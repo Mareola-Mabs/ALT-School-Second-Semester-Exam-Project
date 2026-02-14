@@ -1,6 +1,6 @@
-import { getUser } from "./Auth";
+import { getUser } from "../services/Auth";
 import { useEffect, useState } from "react";
-import api from "./Auth";
+import api from "../services/Auth";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
