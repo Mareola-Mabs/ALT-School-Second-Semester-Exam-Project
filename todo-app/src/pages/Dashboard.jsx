@@ -11,11 +11,9 @@ const Dashboard = () => {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [viewDesc, setViewDesc] = useState(null);
 
-
-
-  const [viewDesc, setViewDesc] = useState(null)
-
+  const [status, setStatus] = useState("TODO");
 
   // Fetch todos on mount
   useEffect(() => {
@@ -39,9 +37,6 @@ const Dashboard = () => {
     fetchTodos();
   }, []);
 
-
- 
-
   return (
     <div className="min-h-screen bg-linear-to-br from-black via-zinc-900 to-blue-950 text-white">
       {/* Navbar */}
@@ -55,24 +50,32 @@ const Dashboard = () => {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-6 py-8">
         {/* Search */}
-        <div className="flex gap-3 mb-6">
+        <div className="flex gap-3 mb-6 justify-center items-center">
           <input
             type="search"
             placeholder="Search tasks..."
             className="flex-1 bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
           />
-          <button className="bg-blue-600 cursor-pointer hover:bg-blue-700 px-6 py-3 rounded-lg font-medium transition shadow-md shadow-blue-500/20">
-            Show Completed
-          </button>
+
+          <label className="flex flex-col text-zinc-300">
+            <select
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              className="bg-black border border-zinc-700 rounded-lg px-4 py-3.5 text-white"
+            >
+              <option value="TODO">Todo</option>
+              <option value="IN_PROGRESS">In Progress</option>
+              <option value="DONE">Completed</option>
+              <option value="CANCELLED">Cancelled</option>
+            </select>
+          </label>
         </div>
 
         {/* Todo List */}
         <div className="bg-zinc-900 rounded-xl border border-zinc-800 shadow-lg">
           <div className="p-4 border-b border-zinc-800 flex justify-between">
             <h2 className="text-lg font-semibold">Your Todos</h2>
-            <button
-              className="bg-green-500 p-2 rounded-md cursor-pointer"
-            >
+            <button className="bg-green-500 p-2 rounded-md cursor-pointer">
               Create a Task
             </button>
           </div>
@@ -90,18 +93,25 @@ const Dashboard = () => {
                 >
                   <div>
                     <div className="font-medium text-white">{todo.name}</div>
-                    <button onClick={()=> setViewDesc(viewDesc === todo.id? null : todo.id)} className="text-sm cursor-pointer text-blue-500 hover:text-blue-400">
+                    <button
+                      onClick={() =>
+                        setViewDesc(viewDesc === todo.id ? null : todo.id)
+                      }
+                      className="text-sm cursor-pointer text-blue-500 hover:text-blue-400"
+                    >
                       View Description
                     </button>
-                    
-                    {viewDesc === todo.id? <div className="w-full bg-gray-400">{todo.description}</div>: null}
+
+                    {viewDesc === todo.id ? (
+                      <div className="w-full bg-gray-400">
+                        {todo.description}
+                      </div>
+                    ) : null}
                   </div>
 
                   {/* Right Side Buttons */}
                   <div className="flex gap-3">
-                    <button
-                      className="px-4 py-2 bg-blue-600 cursor-pointer hover:bg-blue-700 rounded-lg text-sm transition"
-                    >
+                    <button className="px-4 py-2 bg-blue-600 cursor-pointer hover:bg-blue-700 rounded-lg text-sm transition">
                       Edit
                     </button>
                     <div
@@ -123,7 +133,6 @@ const Dashboard = () => {
           )}
         </div>
       </div>
-
     </div>
   );
 };
