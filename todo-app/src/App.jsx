@@ -5,18 +5,17 @@ import Login from "./pages/Login";
 import NotFound from "./pages/404";
 import { isAuthenticated } from "./services/auth";
 import { lazy, Suspense } from "react";
+import TestError from "./pages/TestError";
 
-const Dashboard = lazy(()=> import('./pages/Dashboard'))
+const Dashboard = lazy(() => import("./pages/Dashboard"));
 
 const AuthDashboard = () => {
-
   if (!isAuthenticated()) {
     return <Navigate to="/login" />;
   }
 
   return <Dashboard />;
 };
-
 
 function App() {
   return (
@@ -27,6 +26,8 @@ function App() {
 
       <Route path="/dashboard" element={<AuthDashboard />} />
 
+      {/* ErrorBoundary Route*/}
+      <Route path="/test-error" element={<TestError />} />
 
       {/* 404 route */}
       <Route path="*" element={<NotFound />} />
