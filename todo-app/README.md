@@ -213,4 +213,50 @@ API requests include authorization headers
 ## Screenshots
 
 
-```
+## Challenges and Solutions
+Challenge: Managing modal state for editing individual todos  
+Solution: Used selected todo state instead of boolean modal state
+
+Challenge: Keeping UI in sync after editing or deleting tasks  
+Solution: Used optimistic UI updates with React state
+
+Challenge: Handling authentication persistence  
+Solution: Stored tokens and user object in localStorage and created helper functions
+
+Challenge: Creating scalable component structure  
+Solution: Separated pages, components, and services
+
+## Known Issues
+Refresh token auto-renewal not fully implemented
+
+WebSocket real-time updates not implemented yet
+
+Pagination can be further optimized using TanStack Query
+
+
+## Future Improvements
+
+Add WebSocket support for real-time update
+Implement TanStack Query for caching and improved state management
+Add user profile pgae
+Improve accessibility with additional ARIA attributes
+Add offline support and caching
+Add unit and integration tests
+
+
+## Deployment Instructions
+**Build the project**
+`npm run build`
+
+Deploy the dist folder to:
+-   Vercel  
+    or
+-   Netlify
+
+Ensure environment variables are configured correctly if needed
+
+
+## Author
+Name: Mareola  
+Role: Frontend Developer  
+Tech Stack: React, Node.js, Tailwind CSS
