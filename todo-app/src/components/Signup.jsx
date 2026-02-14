@@ -67,7 +67,7 @@ const Signup = () => {
       window.location.href = "/login";
     } catch (error) {
       console.error(error.response?.data || error.message);
-      setError(error.message);
+      setError(error.response?.data.message);
       setLoading(false);
     }
   };
