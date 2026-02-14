@@ -1,8 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
 
 const Signup = () => {
+  useEffect(() => {
+    document.title = "Signup";
+  });
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,29 +17,31 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    if (name === ""){
-        setError("Name Cannot be Empty")
-        return
+    if (name === "") {
+      setError("Name Cannot be Empty");
+      return;
     }
-    if (email === ""){
-        setError("Email Cannot be Empty")
-        return
+    if (email === "") {
+      setError("Email Cannot be Empty");
+      return;
     }
-    if (password === ""){
-        setError("Password Cannot be Empty")
-        return
+    if (password === "") {
+      setError("Password Cannot be Empty");
+      return;
     }
-    if (password === ""){
-        setError("Password Cannot be Empty")
-        return
-    }
-
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/
-    if (!passwordRegex.test(password)){
-        setError("Password Must Contain a Special Character, Uppercase and LowerCase Letters")
-        return
+    if (password === "") {
+      setError("Password Cannot be Empty");
+      return;
     }
 
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password Must Contain a Special Character, Uppercase and LowerCase Letters",
+      );
+      return;
+    }
 
     setLoading(true);
 
