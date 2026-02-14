@@ -1,8 +1,8 @@
 import { getUser } from "../services/auth";
 import { useEffect, useState } from "react";
 import api from "../services/auth";
-import { Link } from "react-router-dom";
-import axios from "axios";
+
+import CreateTask from "../components/CreateTask";
 
 const Dashboard = () => {
   const user = getUser();
@@ -13,7 +13,8 @@ const Dashboard = () => {
 
   const [viewDesc, setViewDesc] = useState(null);
 
-  const [status, setStatus] = useState("TODO");
+  const [creating, setCreating] = useState(false)
+
 
   // Fetch todos on mount
   useEffect(() => {
@@ -75,7 +76,7 @@ const Dashboard = () => {
         <div className="bg-zinc-900 rounded-xl border border-zinc-800 shadow-lg">
           <div className="p-4 border-b border-zinc-800 flex justify-between">
             <h2 className="text-lg font-semibold">Your Todos</h2>
-            <button className="bg-green-500 p-2 rounded-md cursor-pointer">
+            <button onClick={()=> setCreating(true)} className="bg-green-500 p-2 rounded-md cursor-pointer">
               Create a Task
             </button>
           </div>
@@ -133,6 +134,7 @@ const Dashboard = () => {
           )}
         </div>
       </div>
+      {creating && <CreateTask setCreating={setCreating}/>}
     </div>
   );
 };
