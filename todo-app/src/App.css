@@ -1,1 +1,31 @@
 @import "tailwindcss";
+
+
+.todo-status {
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 10px;
+  user-select: none;
+}
+
+/* Different states */
+.status-todo {
+  background-color: #6b7280; /* grey */
+}
+
+.status-pending {
+  background-color: #f59e0b; /* yellow */
+}
+
+.status-completed {
+  background-color: #10b981; /* green */
+}
+
+.status-cancelled {
+  background-color: #ef4444; /* red */
+}

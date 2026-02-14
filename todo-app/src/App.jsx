@@ -3,6 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import NotFound from "./components/404";
+import { isAuthenticated } from "./components/Auth";
+import { lazy, Suspense } from "react";
+
+const Dashboard = lazy(()=> import('./components/Dashboard'))
 
 const AuthDashboard = () => {
 
