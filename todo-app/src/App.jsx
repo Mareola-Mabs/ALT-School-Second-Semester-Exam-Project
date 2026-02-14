@@ -1,13 +1,13 @@
-import './App.css'
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Signup from "./components/Signup";
 
 function App() {
-
-
   return (
-    <div className="bg-red-500">
-      Hello
-    </div>
-  )
+    <Routes>
+      <Route path="/signup" element={<Signup />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
